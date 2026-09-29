@@ -139,7 +139,23 @@ public class TreeProblems {
    Hint: There's a simple way to do this!
   */
   public static int sumTree(Map<Integer, List<Integer>> tree) {
-    return -1;
+
+  // Add all node values
+    if (tree == null) {
+
+      return 0;
+    }
+
+
+    int total = 0;
+
+    for (Integer value : tree.keySet()) {
+
+      total += value;
+    }
+
+    return total;
+
   }
 
   /*
@@ -162,7 +178,7 @@ public class TreeProblems {
    Hint: No recursion needed! Think about how you would do this by hand.
   */
   public static <T> T findRoot(Map<T, List<T>> tree) {
-    return null;
+    
   }
 
   /*
