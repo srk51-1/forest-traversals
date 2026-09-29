@@ -1,5 +1,7 @@
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class TreeProblems {
 
@@ -178,6 +180,26 @@ public class TreeProblems {
    Hint: No recursion needed! Think about how you would do this by hand.
   */
   public static <T> T findRoot(Map<T, List<T>> tree) {
+          Set<T> set = new HashSet<>();
+    
+      // Collect all children
+      for (List<T> children : tree.values()) {
+        
+        for (T child : children) {
+
+          set.add(child);
+        }
+      }
+    
+      // Find the node with no parent
+      for (T current : tree.keySet()) {
+        if (!set.contains(current)) {
+
+          return current;
+        }
+      }
+    
+      return null;
     
   }
 
