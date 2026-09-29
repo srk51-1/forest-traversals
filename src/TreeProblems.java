@@ -241,7 +241,7 @@ public class TreeProblems {
     int size = q.size();
 
     for (int i = 0; i < size; i++) {
-      
+
       Node<T> current = q.remove();
 
       for (Node<T> child : current.children) {
@@ -275,6 +275,28 @@ public class TreeProblems {
    Hint: Use findRoot to start. Then, make a recursive helper method.
   */
   public static int maxDepth(Map<String, List<String>> tree) {
-    return -1;
-  }
+
+      if (tree == null || tree.isEmpty()) {
+        return 0;
+      }
+    
+      String root = findRoot(tree);
+      return maxDepthHelper(tree, root);
+    }
+    
+    private static int maxDepthHelper(
+        Map<String, List<String>> tree, String root) {
+    
+      int longest = 0;
+    
+      for (String child : tree.get(root)) {
+        int depth = maxDepthHelper(tree, child);
+    
+        if (depth > longest) {
+          longest = depth;
+        }
+      }
+    
+      return longest + 1;
+    }
 }
