@@ -1,6 +1,8 @@
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 import java.util.Set;
 
 public class TreeProblems {
@@ -184,7 +186,7 @@ public class TreeProblems {
     
       // Collect all children
       for (List<T> children : tree.values()) {
-        
+
         for (T child : children) {
 
           set.add(child);
@@ -222,8 +224,37 @@ public class TreeProblems {
    
   */
   public static <T> int maxDepth(Node<T> root) {
-    return -1;
+
+    if (root == null) {
+
+    return 0;
   }
+
+  Queue<Node<T>> q = new LinkedList<>();
+
+  int depth = 0;
+
+  q.add(root);
+
+  // Count one level at a time
+  while (!q.isEmpty()) {
+    int size = q.size();
+
+    for (int i = 0; i < size; i++) {
+      
+      Node<T> current = q.remove();
+
+      for (Node<T> child : current.children) {
+        q.add(child);
+      }
+    }
+
+    depth++;
+  }
+
+  return depth;
+}
+  
 
   /*
    maxDepth (Map Version)
